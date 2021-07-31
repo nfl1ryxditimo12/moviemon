@@ -1,0 +1,50 @@
+<% content_for :btn_boot, '/' %>
+
+<% if $selected["mode"] == "fight" %>
+<% content_for :btn_a, "fight?input=fight" %>
+<% content_for :btn_b, "fight?input=run" %>
+<% end %>
+
+<% if $selected["mode"] == "win" || $selected["mode"] == "lose" || $selected["mode"] == "run" %>
+    <% content_for :btn_a, "game" %>
+<% end %>
+
+<% if $selected["mode"] == "fight"%>
+  <div style="width: 100%; height : 100%; position : relative; float : left;">
+    <div style="position : relative; width : 50%; height : 100%; color: white; font-size: small; float : left;">
+      <img style="position : relative; width : 100%; height : 100%" src="<%= $game["movie_dex"][$game["monster"]]["Poster"]%>" alt="" />
+    </div>
+    <div style="position : relative; width:50%; height : 100%; color: white; font-size: small; float : right; text-align : center;">
+      <p> <%= $game["movie_dex"][$game["monster"]]["Director"] %></p>
+      <p>is facing you 
+      with:
+      </p>
+      <p> <%= $game["movie_dex"][$game["monster"]]["Title"] %></p>
+      <p>YOU hit : <%= $player["hit"] %> | hp : <%= $player["hp"] %></p>
+      <p>HIM <%= $game["movie_dex"][$game["monster"]]["Ratings"] %> | hp : <%= $game["monster_hp"]%></p>
+    </div>
+  </div>
+
+<% elsif $selected["mode"] == "win" %>
+  <div style="position: absolute; color: white; font-size : large; width : 90%; height : 90%; margin : 0 auto; z-index : 999; text-align : center;">
+    <p>     You caught it!!!</p>
+    <p>     Press [A] to skip</p>
+  </div>
+  <% $selected["mode"] == "game" %>
+
+<% elsif $selected["mode"] == "lose" %>
+  <div style="position: absolute; color: white; font-size : large; width : 90%; height : 90%; margin : 0 auto; z-index : 999; text-align : center;">
+    <p>         <%= $game["movie_dex"][$game["monster"]]["Title"]%> is lost!!!</p>
+    <p>        Press [A] to skip</p>
+
+  </div>
+  <% $selected["mode"] == "game" %>
+
+<% elsif $selected["mode"] == "run" %>
+  <div style="position: absolute; color: white; font-size : large; width : 90%; height : 90%; margin : 0 auto; z-index : 999; text-align : center;">
+    <p >        You coward! </p>
+    <p>     Press [A] to skip</p>
+  </div>
+  <% $selected["mode"] == "game" %>
+
+<% end %>
