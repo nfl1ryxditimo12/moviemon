@@ -8,15 +8,16 @@ import os
 import pickle
 import random
 import requests
+import shutil
 
 def make_session_dir():
-    if not os.path.exists("save_game"):
-        os.makedirs("save_game")
+    if not os.path.exists("saved_game"):
+        os.makedirs("saved_game")
 
 def save_session_data(data):
     make_session_dir()
     try:
-        f =  open("save_game/save_game.bin", "wb") 
+        f =  open("saved_game/saved_game.bin", "wb") 
         pickle.dump(data, f)
         f.close()
         return data
@@ -25,12 +26,56 @@ def save_session_data(data):
 
 def load_session_data():
     try:
-        f = open("save_game/save_game.bin", "rb")
+        f = open("saved_game/saved_game.bin", "rb")
         data = pickle.load(f)
         f.close()
         return data
     except:
         return None
+
+def load_game_data():
+    try:
+        if os.path.isfile('saved_game/slots.bin'):
+            with open('saved_game/slots.bin', 'rb') as f:
+                return pickle.load(f)
+        return {}
+    except Exception as e:
+        print(e)
+        return {}
+
+def save_game_data(slot):
+    data = load_session_data()
+    slots = load_game_data()
+    if data is not None:
+        try:
+            score = "{}/{}".format(len(data["captured_list"]), len(data['moviemon']))
+            if slots.get(f"{slot}", None) is not None:
+                if os.path.isfile(slots[f"{slot}"]["file"]):
+                    os.remove(slots[f"{slot}"]["file"])
+            file = f"saved_game/slot{slot}_{len(data['captured_list'])}_{len(data['moviemon'])}.mmg"
+            with open(file, 'wb') as f:
+                pickle.dump(data, f)
+            slots[f"{slot}"] = {
+                'score': score,
+                'file': file
+            }
+            with open('saved_game/slots.bin', 'wb') as f:
+                pickle.dump(slots, f)
+            return True
+        except Exception as e:
+            print(e)
+    return False
+
+def load_slot(slot):
+    slots = load_game_data()
+    slot = slots.get(slot, None)
+    if slot == None:
+        return False
+    try:
+        shutil.copy(slot["file"], "saved_game/session.bin")
+        return True
+    except:
+        return False
 
 def valid_movie_list(movie_list, result):
     low = 0
@@ -65,13 +110,17 @@ def get_movie_list(movie_list):
         return get_movie_list(movie_list)
     return result
 
-def get_init_map(movie_list):
+def get_init_map(movie_list, game):
     map = [[0 for col in range(10)] for row in range(10)]
     
     for i in range(0, 10):
         for j in range(0, 10):
-            map[i][j] = random.choice(['ground', 'ground', 'ground', random.choice(['ball', str(random.sample(movie_list, len(movie_list)))])])
-    map[5][5] = 'player'
+            while True:
+                movie = str(random.choice(movie_list))
+                if not movie in game.captured_list:
+                    break
+            map[i][j] = random.choice(['ground', 'ground', 'ground', random.choice(['ball', movie])])
+    map[game.pos['x']][game.pos['y']] = 'player'
     
     return map
 
@@ -113,16 +162,14 @@ class GameData:
         self.ball_count: int = settings.MOVIE_BALL_COUNT
         self.captured_list: List(str) = []
         self.moviemon: Dict[str, Moviemon] = {}
-
-        # 수정 필요
         self.map: List[List] = []
 
     def get_random_movie(self):
         id = [m for m in self.moviemon.keys() if not m in self.captured_list]
         return random.choice(id)
 
-    def get_strength(self):
-        pass
+    def get_strength(self) -> int:
+        return len(self.captured_list) / 2 + 1
 
     def get_movie(self, movimon_id):
         return self.moviemon[movimon_id]
@@ -149,21 +196,22 @@ class GameData:
     
     @staticmethod
     def load_default_settings():
-        movie_list = random.choice([settings.MOVIE_LIST, settings.MOVIE_LIST_KOR])
+        list_cnt = random.randint(10, 26)
+        movie_list = random.sample(settings.MOVIE_LIST, list_cnt)
 
         # 나중에 사용할 영화 리스트 변수
-        # result = get_movie_list(movie_list)
+        result = get_movie_list(movie_list)
 
         # 로컬에 영화 리스트 저장 후 사용하는 코드
-        result = GameData()
-        f = open('save_game/movie_list.bin', 'rb')
-        data = dict(pickle.load(f))
-        f.close()
-        for id in movie_list:
-            for key, value in data.items():
-                if id == key:
-                    result.moviemon[id] = value
+        # result = GameData()
+        # f = open('saved_game/movie_list.bin', 'rb')
+        # data = pickle.load(f)
+        # f.close()
+        # for id in movie_list:
+        #     for key, value in data.items():
+        #         if id == key:
+        #             result.moviemon[id] = value
         
-        result.map = get_init_map(movie_list)
+        result.map = get_init_map(movie_list, result)
         return result
         

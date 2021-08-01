@@ -2,11 +2,11 @@ import pickle
 from moviemon.util.data import Moviemon
 
 
-f =  open('save_game/movie_list.bin', 'rb')
+f =  open('saved_game/movie_list.bin', 'rb')
 data = dict(pickle.load(f))
 f.close()
 
-f =  open('save_game/save_game.bin', 'rb')
+f =  open('saved_game/save_game.bin', 'rb')
 data1 = pickle.load(f)
 f.close()
 

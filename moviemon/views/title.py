@@ -17,6 +17,6 @@ class Title(TemplateView):
                 save_session_data(GameData.load_default_settings().dump())
                 return redirect('worldmap')
             elif key == 'b':
-                return redirect('loadfile')
+                return redirect('load')
             return redirect(request.path)
         return render(request, self.template_name, self.context)

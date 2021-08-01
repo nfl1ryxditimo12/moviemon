@@ -9,18 +9,15 @@
     {% for x in map %}
     <tr>
       {% for y in x %}
-      <td class="worldmap-td {% if x.content == "@" %}
-        worldmap-player
-        {% endif %}
-        "style="background-color: rgb({{y.r}}, {{y.g}}, {{y.b}})";  text-align:center;>
+      <td class="worldmap-td {% if y == 'player' %}worldmap-player{% endif %}" style="text-align: center;">
         {% if y == "ball" %}
-          b
+          ?
         {% elif y == "ground" %}
-          g
+          
         {% elif y == "player" %}
-          p
+          
         {% else %}           
-          m
+          ?
         {% endif %}
       </td>
       {% endfor %}
@@ -28,4 +25,16 @@
     {% endfor %}
   </table>
 </div>
+{% if state %}
+  <div class="worldmap-flush-block">
+    <div class="worldmap-flush-comment">
+      {% if state == "battle" %}
+        🅰 Start to catch
+      {% elif state == "win" %}
+        <p style="margin-top: -2.4vh;">You've catched all {{moviemons}} moviemons and became the glorious <i>Moviemon Master!</i></p>
+        <p>🅰 return to title</p>
+      {% endif %}
+    </div>
+  </div>
+{% endif %}
 {% endblock content %}
