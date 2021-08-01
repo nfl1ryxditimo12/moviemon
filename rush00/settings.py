@@ -129,8 +129,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 API_KEY = "cd3c87f1"
 
-PLAYER_COORDINATE = (5, 5)
+PLAYER_COORDINATE = {'x': 5, 'y': 5}
 MOVIE_BALL_COUNT = 20
+GRID_SIZE = (14, 14)
 
 MOVIE_LIST = [
     "tt0468492",

@@ -2,7 +2,7 @@ from moviemon.util.data import GameData, save_session_data
 from django.shortcuts import render, redirect
 from django.views.generic import TemplateView
 
-from util.data import save_session_data
+from moviemon.util.data import save_session_data
 
 class Title(TemplateView):
     template_name = 'title.html'

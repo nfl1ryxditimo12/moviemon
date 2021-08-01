@@ -1,0 +1,31 @@
+{% extends 'base.html' %} {% block title %}
+{% load static %}
+<title>WORLDMAP | MOVIEMON</title>
+{% endblock title %} 
+
+{% block content %}
+<div class="worldmap-container">
+  <table class="worldmap-table">
+    {% for x in map %}
+    <tr>
+      {% for y in x %}
+      <td class="worldmap-td {% if x.content == "@" %}
+        worldmap-player
+        {% endif %}
+        "style="background-color: rgb({{y.r}}, {{y.g}}, {{y.b}})";  text-align:center;>
+        {% if y == "ball" %}
+          b
+        {% elif y == "ground" %}
+          g
+        {% elif y == "player" %}
+          p
+        {% else %}           
+          m
+        {% endif %}
+      </td>
+      {% endfor %}
+    </tr>
+    {% endfor %}
+  </table>
+</div>
+{% endblock content %}
