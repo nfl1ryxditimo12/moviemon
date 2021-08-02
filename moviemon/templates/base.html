@@ -11,6 +11,11 @@
     <title>MOVIEMON</title>
     {% endblock title %}
     <script type="text/javascript" src="{% static 'js/button_events.js' %}"></script>
+
+
+
+
+	<!--
     <style>
       @font-face {
         font-family: "PKMN RBYGSC";
@@ -566,21 +571,30 @@
         color: #383838;
         text-shadow: 1px 1px 1px #383838;
       }
+	  -->
+	  <link rel = "stylesheet" href = "{% static 'css/moviemon.css' %}" />
+	<style>
     </style>
   </head>
 
   <body>
-    <div class="container">
-      <div class="content">{% block content %}{% endblock content %}</div>
-      <a href="{{ request.path }}?key=up" id="btn-up"></a>
-      <a href="{{ request.path }}?key=left" id="btn-left"></a>
-      <a href="{{ request.path }}?key=right" id="btn-right"></a>
-      <a href="{{ request.path }}?key=down" id="btn-down"></a>
-      <a href="{{ request.path }}?key=a" id="btn-a"></a>
-      <a href="{{ request.path }}?key=b" id="btn-b"></a>
-      <a href="{{ request.path }}?key=select" id="btn-select"></a>
-      <a href="{{ request.path }}?key=start" id="btn-start"></a>
-    </div>
+	  <div class="container">
+		  <div class = "game">
+			  <img src="{% static 'img/gameboy.jpeg' %}" usemap='#button' class="game opac" />
+			  		{% include 'button.html' %}
+				  <span class ="light"></span>
+			  </map>
+		  </div>
+		  <div class = "display">
+			  <!-- 여기에 이미지가 들어가용 -->
+			  {% block display %}
+			  <!-- img src="{% static 'img/green_bg.jpeg' %}" class = "bg dongle" /-->
+			  <img src ="{% static 'img/map.png' %}" class = "map dongle" />
+			  {% endblock %}
+			  <img src="{% static 'img/player.png' %}" class = "player"/>
+		  </div>
+	  </div>
+	  <div class="content">{% block content %}{% endblock content %}</div>
   </body>
 
 </html>

@@ -1,0 +1,59 @@
+body{
+	margin : 0;
+	padding : 0;
+}
+area:focus{
+  border: none;
+  outline:none;
+  outline-style: none;
+  -moz-outline-style:none;
+}
+img.game{
+	position : relative;
+	top : 0px;
+	left : 0px;
+}
+
+span.light{
+	height : 15px;
+	width : 15px;
+	background : red;
+	border-radius : 50%;
+	display : block;
+	position : absolute;
+	top : 105px;
+	left : 775px;
+	pointer-events : none;
+	/* power on|off -> x% */
+	filter : brightness(70%);
+}
+.display{
+	width : 420px;
+	height : 280px;
+	border-radius: 8px 5px;
+	display : block;
+	position : absolute;
+	top : 0px;
+	left : 0px;
+	pointer-events : none;
+	padding-top : 120px;
+	padding-left : 270px;
+}
+img.player{
+	position : relative;
+	top : 0px; /* +{{ pos_y }} */
+	left : 0px; /* * {{ pos_x }} */
+	width : 20px;
+	height : auto;
+}
+.dongle{
+	border-radius : 10px;
+	width : 420px;
+	height : 280px;
+}
+.opac{
+	opacity : 1.0;
+}
+img{
+	-webkit-user-drag: none;
+}
