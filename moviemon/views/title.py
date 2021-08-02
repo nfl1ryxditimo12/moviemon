@@ -17,9 +17,14 @@ class Title(TemplateView):
         if key:
             print(key)
             if key == 'a':
+                
+                # 세선 데이터 저장
                 save_session_data(GameData.load_default_settings().dump())
+
+                # 월드맵으로 이동
                 return redirect('worldmap')
+
             elif key == 'b':
-                return redirect('loadfile')
+                return redirect('load')
             return redirect(request.path)
         return render(request, self.template_name, self.context)
