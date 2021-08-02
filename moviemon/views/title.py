@@ -1,10 +1,10 @@
 from moviemon.util.data import GameData, save_session_data
 from django.shortcuts import render, redirect
 from django.views.generic import TemplateView
-<<<<<<< HEAD
+#<<<<<<< HEAD
 
-=======
->>>>>>> ddc2b234174801aceff1e52853ad2f711490aeeb
+#=======
+#>>>>>>> ddc2b234174801aceff1e52853ad2f711490aeeb
 from moviemon.util.data import save_session_data
 
 class Title(TemplateView):
