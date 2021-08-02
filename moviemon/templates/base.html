@@ -574,6 +574,10 @@
 	  -->
 	  <link rel = "stylesheet" href = "{% static 'css/moviemon.css' %}" />
 	<style>
+.worldmap-player{
+	width : 20px;
+	height : auto;
+}
     </style>
   </head>
 
@@ -591,10 +595,9 @@
 			  <!-- img src="{% static 'img/green_bg.jpeg' %}" class = "bg dongle" /-->
 			  <img src ="{% static 'img/map.png' %}" class = "map dongle" />
 			  {% endblock %}
-			  <img src="{% static 'img/player.png' %}" class = "player"/>
+	  <div class="content">{% block content %}{% endblock content %}</div>
 		  </div>
 	  </div>
-	  <div class="content">{% block content %}{% endblock content %}</div>
   </body>
 
 </html>
