@@ -12,9 +12,11 @@ class Load(TemplateView):
     context = {}
 
     def get(self, request):
+
         key = request.GET.get('key', None)
+
         if (key is not None):
-            print(key)
+        
             if (key == 'up'):
                 state['isLoad'] = False
                 state['slot'] -= 1 if state['slot'] > 0 else 0
@@ -29,8 +31,11 @@ class Load(TemplateView):
                     state['isLoad'] = True
             elif (key == 'b'):
                 return redirect('title')
+
             return redirect(request.path)
+
         slots = load_game_data()
+
         score = 'Free' if slots.get(
             'A', None) is None else slots.get('A').get('score', 'Free')
         self.context['A'] = "Slot 🅰 : {}".format(score)
@@ -42,6 +47,8 @@ class Load(TemplateView):
         self.context['C'] = "Slot 🅲 : {}".format(score)
         self.context['active'] = state['slot']
         self.context['btnA'] = 'Load'
+        
         if state['isLoad'] == True:
             self.context['btnA'] = 'Start game'
+
         return render(request, self.template_name, self.context)

@@ -10,8 +10,10 @@ class Detail(TemplateView):
         game = GameData.load(load_session_data())
         key = request.GET.get('key', None)
 
-        if key == 'b':
-            return redirect('moviedex')
+        if key is not None:
+            if key == 'b':
+                return redirect('moviedex')
+            return redirect(request.path)
         
         self.context = {
             'title': game.moviemon[moviemon_id].title,

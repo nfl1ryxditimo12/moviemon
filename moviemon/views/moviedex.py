@@ -9,21 +9,28 @@ class Moviedex(TemplateView):
     context = {}
 
     def get(self, request):
+
         game = GameData.load(load_session_data())
+
         key = request.GET.get('key', None)
-        print(state['idx'])
-        if key == 'right':
-            if state['idx'] < len(game.captured_list) - 1:
-                state['idx'] += 1
-        elif key == 'left':
-            if state['idx'] > 0:
-                state['idx'] -= 1
-        elif key == 'a':
-            return redirect('detail', moviemon_id=game.captured_list[state['idx']])
-        elif key == 'select':
-            return redirect('worldmap')
         
+        if key is not None:
+            if key == 'right':
+                if state['idx'] < len(game.captured_list) - 1:
+                    state['idx'] += 1
+            elif key == 'left':
+                if state['idx'] > 0:
+                    state['idx'] -= 1
+            elif key == 'a':
+                return redirect('detail', moviemon_id=game.captured_list[state['idx']])
+            elif key == 'select':
+                return redirect('worldmap')
+
+            return redirect(request.path)
+        
+        # 잡은 무비몬의 리스트를 하나씩 넣어준다
         self.context['movies'] = []
+        
         if state['idx'] > 0:
             id = game.captured_list[state['idx'] - 1]
             self.context['movies'].append({

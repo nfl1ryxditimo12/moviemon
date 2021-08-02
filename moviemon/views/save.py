@@ -9,8 +9,9 @@ class Save(TemplateView):
     context = {}
 
     def get(self, request):
+
         key = request.GET.get('key', None)
-        print(state['slot'])
+        
         if key is not None:
             if key == 'up':
                 if state['slot'] > 0:
@@ -24,7 +25,10 @@ class Save(TemplateView):
                 return redirect('options')
             return redirect(request.path)
         
+        # 저장된 데이터를 불러온다
         slots = load_game_data()
+        
+        # 여기서 저장된 데이터 기준으로 save 슬롯 세 칸의 정보를 넣어준다
         score = 'Free' if slots.get(
             'A', None) is None else slots.get('A').get('score', 'Free')
         self.context['A'] = "Slot 🅰 : {}".format(score)
