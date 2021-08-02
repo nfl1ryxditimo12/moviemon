@@ -30,7 +30,7 @@ class Moviedex(TemplateView):
         
         # 잡은 무비몬의 리스트를 하나씩 넣어준다
         self.context['movies'] = []
-        
+
         if state['idx'] > 0:
             id = game.captured_list[state['idx'] - 1]
             self.context['movies'].append({
@@ -41,7 +41,7 @@ class Moviedex(TemplateView):
             id = game.captured_list[state['idx']]
             self.context['movies'].append({
                 'poster': game.moviemon[id].poster,
-                'class': 'moviedex-ative '
+                'class': 'moviedex-active '
             })
         if state['idx'] < len(game.captured_list) - 1:
             id = game.captured_list[state['idx'] + 1]

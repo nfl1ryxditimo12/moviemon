@@ -1,40 +1,51 @@
-{% extends 'base.html' %} {% block title %}
+{% extends 'base.html' %}
+
 {% load static %}
-<title>WORLDMAP | MOVIEMON</title>
-{% endblock title %} 
+
+{% block title %}
+<title>World Map</title>
+{% endblock title %}
 
 {% block content %}
+
 <div class="worldmap-container">
-  <table class="worldmap-table">
-    {% for x in map %}
-    <tr>
-      {% for y in x %}
-      <td class="worldmap-td {% if y == 'player' %}worldmap-player{% endif %}" style="text-align: center;">
-        {% if y == "ball" %}
-          B
-        {% elif y == "ground" %}
-          
-        {% elif y == "player" %}
-          
-        {% else %}           
-          M
-        {% endif %}
-      </td>
-      {% endfor %}
-    </tr>
-    {% endfor %}
-  </table>
+    <table class="worldmap-table">
+        {% for x in map %}
+        <tr>
+            {% for y in x %}
+            <td class="worldmap-td {% if y == 'player' %}worldmap-player{% endif %}" style="text-align: center;">
+                {% if y == "ball" %}
+                  B
+                {% elif y == "ground" %}
+                  
+                {% elif y == "player" %}
+                  
+                {% else %}           
+                  M
+                {% endif %}
+            </td>
+            {% endfor %}
+        </tr>
+        {% endfor %}
+    </table>
 </div>
 {% if state %}
-  <div class="worldmap-flush-block">
-    <div class="worldmap-flush-comment">
-      {% if state == "battle" %}
-        🅰 Start to catch
-      {% elif state == "win" %}
-        <p style="margin-top: -2.4vh;">You've catched all {{moviemons}} moviemons and became the glorious <i>Moviemon Master!</i></p>
-        <p>🅰 return to title</p>
-      {% endif %}
+{% if state == "win" %}
+<div class="worldmap-state-notice-block">
+    <div class="worldmap-state-notice-comment">
+        <p style="margin-bottom: -7px;">All Clear!</p>
     </div>
-  </div>
+</div>
 {% endif %}
+<div class="worldmap-state-block">
+    <div class="worldmap-state-comment">
+    {% if state == "battle" %}
+        🅰️ Start a fight
+    {% elif state == "win" %}
+        🅰️ return to title
+    {% endif %}
+    </div>
+</div>
+{% endif %}
+
 {% endblock content %}

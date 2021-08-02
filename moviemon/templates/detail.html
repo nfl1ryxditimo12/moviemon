@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}
+<title>Detail | {{ title }}</title>
+{% endblock title %}
+
+{% block content %}
+<div>
+    <img class="detail_poster" src="{{ poster }}">
+    <div class="detail_title detail_text">Title : {{ title }}</div>
+    <div class="detail_director detail_text">Director : {{ director }}</div>
+    <div class="detail_year detail_text">Year : {{ year }}</div>
+    <div class="detail_rating detail_text">Rating : {{ rating }}</div>
+    <div class="detail_actors detail_text">Actors : {{ actors }}</div>
+    <div class="detail_plot">{{ plot }}</div>
+</div>
+<div class="worldmap-state-block">
+    <div class="worldmap-state-comment">
+        🅱️ return to Moviedex
+    </div>
+</div>
+{% endblock content %}

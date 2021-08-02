@@ -1,19 +1,27 @@
-{% extends 'base.html' %} {% block title %}
-<title>SAVE | MOVIEMON</title>
-{% endblock title %} {% block content %}
-<div class="save_scene">
-  <div class="save-comment-block">
-    <div class="save-comment-a" {% if active == 0 %}style="color:blue; text-shadow: 1px 1px 1px navy;"{% endif %}>
-      {{ A }}
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}
+<title>Save List</title>
+{% endblock title %}
+
+{% block content %}
+<div class="save_container">
+    <div class="save_game" {% if active == 0 %}style="color:blue; text-shadow: 1px 1px 1px navy;"{% endif %}>
+        <p class="save_text">{{ A }}</p>
     </div>
-    <div class="save-comment-b" {% if active == 1 %}style="color:blue; text-shadow: 1px 1px 1px navy;"{% endif %}>
-      {{ B }}
+    <div class="save_game" {% if active == 1 %}style="color:blue; text-shadow: 1px 1px 1px navy;"{% endif %}>
+        <p class="save_text">{{ B }}</p>
     </div>
-    <div class="save-comment-c" {% if active == 2 %}style="color:blue; text-shadow: 1px 1px 1px navy;"{% endif %}>
-      {{ C }}
+    <div class="save_game" {% if active == 2 %}style="color:blue; text-shadow: 1px 1px 1px navy;"{% endif %}>
+        <p class="save_text">{{ C }}</p>
     </div>
-    <div class="save-button-a">🅰 Save</div>
-    <div class="save-button-b">🅱 Cancel</div><br>
-  </div>
+    
+</div>
+<div class="worldmap-state-block">
+    <div class="worldmap-state-comment" style="top: 1.5vh;">
+        🅰️ - Save Game<br>🅱️ - Cancel
+    </div>
 </div>
 {% endblock content %}

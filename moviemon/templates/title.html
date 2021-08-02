@@ -1,11 +1,16 @@
-{% extends 'base.html' %} {% block title %}
-<title>TITLE | MOVIEMON</title>
-{% endblock title %} {% block content %}
-<div class="title-container">
-  <h1 class="title-header">🎬 MovieMon</h1>
-  <div>
-    <div class="title-button">🅰 New Game</div>
-    <div class="title-button">🅱 Load</div>
-  </div>
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}
+<title>TITLE</title>
+{% endblock title %}
+
+{% block content %}
+<div class="options">
+    <p style="text-shadow: 1px 1px 1px #424242; font-size: xx-large;">Title</p>
+    <p style="text-shadow: 1px 1px 1px #424242; font-size: x-large; color: red;">Press any Key !</p>
+    <p>🅰️ - New Game</p>
+    <p>🅱️ - Load</p>
 </div>
 {% endblock content %}

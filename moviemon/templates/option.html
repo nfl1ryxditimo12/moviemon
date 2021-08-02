@@ -1,9 +1,17 @@
-{% extends 'base.html' %} {% block title %}
-<title>OPTION | MOVIEMON</title>
-{% endblock title %} {% block content %}
-<div class="option_scene">
-  <div class="option-comment-block">
-    <div class="option-comment">🅰 Saveㅤㅤㅤㅤㅤㅤㅤㅤㅤ🅱 Quit<br><br> Start - Cancel</div>
-  </div>
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}
+<title>Option</title>
+{% endblock title %}
+
+{% block content %}
+<div class="options">
+    <p style="text-shadow: 1px 1px 1px #424242; font-size: xx-large;">Options</p>
+    <p style="text-shadow: 1px 1px 1px #424242; font-size: x-large; color: red;">Press any Key !</p>
+    <p>🅰️ - Save Game</p>
+    <p>🅱️ - Return to Title</p>
+    <p>Start - Cancel</p>
 </div>
 {% endblock content %}

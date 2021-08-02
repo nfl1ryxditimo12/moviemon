@@ -1,14 +1,20 @@
-{% extends 'base.html' %} {% block title %}
-<title>BATTLE | MOVIEMON</title>
-{% endblock title %} {% block content %}
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}
+<title>Battle | {{title}}</title>
+{% endblock title %}
+
+{% block content %}
 <div class="battle_scene">
-  <div class="battle_movie_name">{{ title }}</div>
-  <div class="battle_movie_strength">LV {{rating}}</div>
-  <img class="battle_poster" src="{{ poster }}"></img>
-  <div class="battle_movie_ball"> ✖ {{ball}}</div>
-  <div class="battle_user_power"> LV {{power}}</div>
-  <div class="battle_text">{{ text }}</div>
-  <div class="battle_user_winning_rate">{{ percent }}%</div>
-  <div class="battle_text_second_line">{{button_text}}</div>
-</div>
+    <div class="battle_movie_name">{{ title }}</div>
+    <div class="battle_movie_strength">LV {{rating}}</div>
+    <img class="battle_poster" src="{{ poster }}"></img>
+    <div class="battle_movie_ball"> ✖ {{ball}}</div>
+    <div class="battle_user_power"> LV {{power}}</div>
+    <div class="battle_text">{{ text }}</div>
+    <div class="battle_user_winning_rate">{{ percent }} %</div>
+    <div class="battle_text_second_line">{{button_text}}</div>
+  </div>
 {% endblock content %}

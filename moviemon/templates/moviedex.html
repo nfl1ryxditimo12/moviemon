@@ -1,13 +1,22 @@
-{% extends 'base.html' %} {% block title %}
-<title>MOVIEDEX | MOVIEMON</title>
-{% endblock title %} {% block content %}
-<div class="moviedex-container">
-  <div class="moviedex-card-container">
-    {% for movie in movies %}
-    <img class="moviedex-card {{ movie.class }}" src="{{ movie.poster }}" />
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}
+<title>Movie Dex</title>
+{% endblock title %}
+
+{% block content %}
+<div class="movie-container">
+{% for movie in movies %}
+    <div class="moviedex {{movie.container}}">
+        <img src="{{ movie.poster }}" class="{{ movie.class }} movie_id" alt="">
+    </div>
     {% endfor %}
-  </div>
 </div>
-  <div class="moviedex-button-a">🅰 More information</div>
-  <div class="moviedex-button-b">Select - Back To WorldMap</div>
+<div class="worldmap-state-block">
+    <div class="worldmap-state-comment" style="top: 1.9vh;">
+        🅰️ This movie's detail<br>Selsct - Return to Worldmap
+    </div>
+</div>
 {% endblock content %}

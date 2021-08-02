@@ -46,8 +46,8 @@ class Load(TemplateView):
             'C', None) is None else slots.get('C').get('score', 'Free')
         self.context['C'] = "Slot 🅲 : {}".format(score)
         self.context['active'] = state['slot']
-        self.context['btnA'] = 'Load'
-        
+        self.context['btnA'] = 'Load Game'
+
         if state['isLoad'] == True:
             self.context['btnA'] = 'Start game'
 
