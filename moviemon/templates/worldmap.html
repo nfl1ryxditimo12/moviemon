@@ -15,13 +15,13 @@
             {% for y in x %}
             <td class="worldmap-td {% if y == 'player' %}worldmap-player{% endif %}" style="text-align: center;">
                 {% if y == "ball" %}
-                  B
+                  ?
                 {% elif y == "ground" %}
                   
                 {% elif y == "player" %}
                   
                 {% else %}           
-                  M
+                  ?
                 {% endif %}
             </td>
             {% endfor %}
